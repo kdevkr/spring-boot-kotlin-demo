@@ -40,6 +40,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.session:spring-session-jdbc")
     implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity6")
+    implementation("commons-io:commons-io:2.18.0")
     compileOnly("org.projectlombok:lombok")
     runtimeOnly("com.h2database:h2")
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")

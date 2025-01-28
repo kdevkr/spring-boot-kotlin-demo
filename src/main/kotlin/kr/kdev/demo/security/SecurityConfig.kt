@@ -21,6 +21,7 @@ class SecurityConfig {
         http.authorizeHttpRequests { requests ->
             requests
                 .requestMatchers("/api/file/**").permitAll()
+                .requestMatchers("/error").permitAll()
                 .anyRequest().authenticated()
         }
         http.cors { cors -> cors.disable() }

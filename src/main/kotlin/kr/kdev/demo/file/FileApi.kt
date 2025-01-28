@@ -1,5 +1,6 @@
 package kr.kdev.demo.file;
 
+import org.apache.commons.io.FilenameUtils
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -15,6 +16,8 @@ class FileApi {
         if (file.isEmpty) {
             throw IllegalArgumentException("File is empty");
         }
+        FilenameUtils.getExtension(file.originalFilename).toRegex()
+            .find("^(jpg|jpeg|png|gif)$") ?: throw IllegalArgumentException("File extension is not allowed");
         return ResponseEntity.ok(file.originalFilename);
     }
 }
