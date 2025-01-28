@@ -1,8 +1,8 @@
 package kr.kdev.demo.security;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
@@ -18,7 +18,13 @@ class SecurityConfig {
 
     @Bean
     fun filterChain(http:HttpSecurity): SecurityFilterChain {
-//        http.authorizeHttpRequests();
+        http.authorizeHttpRequests { requests ->
+            requests
+                .requestMatchers("/api/file/**").permitAll()
+                .anyRequest().authenticated()
+        }
+        http.cors { cors -> cors.disable() }
+        http.csrf { csrf -> csrf.disable() }
         return http.build()
     }
 }
